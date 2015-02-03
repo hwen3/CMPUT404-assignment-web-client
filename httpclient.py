@@ -142,10 +142,13 @@ class HTTPClient(object):
 if __name__ == "__main__":
     client = HTTPClient()
     command = "GET"
+
     if (len(sys.argv) <= 1):
         help()
         sys.exit(1)
     elif (len(sys.argv) == 3):
-        print client.command( sys.argv[1], sys.argv[2] )
+        data = client.command( sys.argv[2], sys.argv[1] )
+        print ("Code:", data.code, "\nBody:", data.body)
     else:
-        print client.command( command, sys.argv[1] )    
+        data = client.command( sys.argv[1], command )
+        print ("Code:", data.code, "\nBody:", data.body)
